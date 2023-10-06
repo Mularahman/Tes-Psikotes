@@ -19,25 +19,31 @@ class DashboardController extends Controller
     $datahasil = Hasil::with('user')->get();
     $datauser = User::where('role','member')->get();
     $datasoal = Soal::all();
-    $dataquiz = Quiz::with('soals','quizuser','hasil')->get();
-    $dataquizuser = Pesertaquiz::with('user')->get();
+    $dataquiz = Quiz::with('soals','quizuser','hasil','quizuser.user')->get();
+
 
 
     $nilaituntas = Hasil::with('user')->where('nilai', '>' , 69)->get();
     $nilaitidaktuntas = Hasil::with('user')->where('nilai', '<' , 70)->get();
     $ratarata = User::withcount('hasil')->with('hasil')->where('status', 1)->get();
 
-    $mengerjakan = Pesertaquiz::with('user','quiz')->where('status', 1)->get();
-    $belummengerjakan = Pesertaquiz::with('user','quiz')->where('status', 0)->get();
 
-    $proggress = 0;
-    if($mengerjakan->count() > 0){
-        $proggress = $mengerjakan->count() / $dataquizuser->count() * 100 ;
+
+    foreach ($dataquiz as $kerjakan){
+
+        $quizid = $kerjakan->id;
+
+
     }
-    $proggress2 = 0;
-    if($belummengerjakan->count() > 0){
-        $proggress2 = $belummengerjakan->count() / $dataquizuser->count() * 100 ;
-    }
+
+    // dd($kerjakan);
+    $dataquizuser = Pesertaquiz::where('quiz_id',  $quizid)->with('user','quiz')->get();
+
+
+
+
+
+
     // dd($mengerjakan);
 
         return view('admin.dashboard',[
@@ -50,8 +56,7 @@ class DashboardController extends Controller
             'tuntas' => $nilaituntas,
             'tidaktuntas' => $nilaitidaktuntas,
             'ratarata' => $ratarata,
-            'mengerjakan' => round($proggress),
-            'belummengerjakan' => round($proggress2),
+
         ]);
     }
 

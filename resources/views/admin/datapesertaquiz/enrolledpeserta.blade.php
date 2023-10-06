@@ -18,9 +18,23 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col">
+
                     <a href="{{ url()->previous() }}" class="btn bg-gradient-primary d-inline-flex me-md-2" >
                         Kembali
                     </a>
+                </div>
+                    <div class="col">
+                        <form action="/enrolle/{{ $id }}" method="get">
+                            <div class="input-group">
+                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="search" placeholder="Cari Nama User...">
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
 
                 </div>
                 @if (session()->has('success'))
@@ -66,8 +80,13 @@
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="/backend/assets/img/team-4.jpg" class="avatar avatar-sm me-3"
-                                                    alt="user3">
+                                                @if ($value->image)
+                                                <img src="{{ asset('storage/' . $value->image) }}"
+                                                    class="avatar avatar-sm me-3" alt="{{ $value->name }}">
+                                            @else
+                                                <img src="{{ 'https://ui-avatars.com/api/?size=32&name=' . $value->name }}"
+                                                    class="avatar avatar-sm me-3" alt="{{ $value->name }}">
+                                            @endif
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">{{$value->name}}</h6>

@@ -32,7 +32,7 @@ class LoginController extends Controller
 
 
         }
-        return back()->with('error', 'Login Failed!! Email Or Password Wrong!!');
+        return back()->with('error', 'Login Failed!! Em ail Or Password Wrong!!');
     }
 
     public function logout(Request $request)

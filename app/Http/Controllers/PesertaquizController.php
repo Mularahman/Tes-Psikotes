@@ -21,7 +21,10 @@ class PesertaquizController extends Controller
     public function index($id)
     {
         $data = Pesertaquiz::with('quiz', 'user')->where('quiz_id',$id)->get();
+        if(request('search')){
+            $data = User::where('role','member')->OrderBy('id','asc')->where('name','LIKE','%'.request('search'). '%')->get();
 
+         }
 
         return view('admin.datapesertaquiz.enrolled', [
             'data' => $data,
@@ -33,6 +36,10 @@ class PesertaquizController extends Controller
     public function create($id)
     {
         $data = User::with('userquizs')->where('role','member')->get();
+        if(request('search')){
+            $data = User::where('role','member')->OrderBy('id','asc')->where('name','LIKE','%'.request('search'). '%')->get();
+
+         }
         return view('admin.datapesertaquiz.enrolledpeserta', [
             'data' => $data,
             'id' => $id

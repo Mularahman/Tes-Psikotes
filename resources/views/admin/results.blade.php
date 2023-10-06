@@ -33,7 +33,7 @@
                             <form action="/laporan" method="get">
                                 <div class="input-group">
                                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="search" placeholder="Type here...">
+                                    <input type="text" class="form-control" name="search" placeholder="Cari Nilai ...">
                                 </div>
                             </form>
 
@@ -54,7 +54,7 @@
 
 
                 <div class="card-body px-2 py-2 pt-0 pb-2">
-                    <div class="table-responsive p-2">
+                    <div class="table-responsive p-2" style="max-height: 400px !important">
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>

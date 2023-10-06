@@ -35,7 +35,7 @@
                             <form action="/hasilquiz/{{$id}}" method="get">
                                 <div class="input-group">
                                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="search" placeholder="Type here...">
+                                    <input type="text" class="form-control" name="search" placeholder="Cari Nilai...">
                                 </div>
                             </form>
 

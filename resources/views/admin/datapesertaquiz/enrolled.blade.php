@@ -18,6 +18,9 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col">
+
                     <a href="/enrolle/{{ $id }}" class="btn bg-gradient-primary d-inline-flex me-md-2"
                         type="submit">
 
@@ -25,11 +28,13 @@
                     </a>
 
 
+
                     <button class="btn bg-gradient-danger d-inline-flex me-md-2"
                         type="submit" id="deleteSelected">
 
                         Hapus Data Pilihan
                     </button>
+
 
                     <a class="btn bg-gradient-success d-inline-flex me-md-2 " href="/enrolle/{{$id}}/cetak">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -41,6 +46,9 @@
                         </svg>
                         Download
                     </a>
+                </div>
+
+                     </div>
 
                 </div>
                 @if (session()->has('success'))
@@ -91,8 +99,13 @@
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="/backend/assets/img/team-4.jpg" class="avatar avatar-sm me-3"
-                                                        alt="user3">
+                                                    @if ($item->user->image)
+                                                <img src="{{ asset('storage/' . $item->user->image) }}"
+                                                    class="avatar avatar-sm me-3" alt="{{ $item->user->name }}">
+                                            @else
+                                                <img src="{{ 'https://ui-avatars.com/api/?size=32&name=' . $item->user->name }}"
+                                                    class="avatar avatar-sm me-3" alt="{{ $item->user->name }}">
+                                            @endif
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">{{ $item->user->name }}</h6>
